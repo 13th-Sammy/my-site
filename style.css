@@ -21,3 +21,8 @@ hr {
     border-top:1px solid white;
     margin:2em 0;
 }
+
+canvas {
+    background:skyblue;
+    border:2px solid white;
+}
