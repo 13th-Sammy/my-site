@@ -2,6 +2,7 @@ const canvas=document.getElementById("Game");
 const ctx=canvas.getContext("2d");
 
 let gameOver=false;
+let score=0;
 
 let pipeGap=150;
 const pipeCount=2;
@@ -18,8 +19,9 @@ let pipes=[];
 for(let i=0; i<pipeCount; i++) {
     const topHeight=generatePipeHeight();
     pipes.push({
-        x: canvas.width+i*pipeSpacing,
-        topHeight:topHeight
+        x:canvas.width+i*pipeSpacing,
+        topHeight:topHeight,
+        passed:false
     });
 }
 
@@ -67,10 +69,12 @@ function restartGame() {
     for(let i=0; i<pipeCount; i++) {
         const topHeight=generatePipeHeight();
         pipes.push({
-            x: canvas.width+i*pipeSpacing,
-            topHeight:topHeight
+            x:canvas.width+i*pipeSpacing,
+            topHeight:topHeight,
+            passed:false
         });
     }
+    score=0;
     gameOver=false;
     gameLoop();
 }
@@ -90,9 +94,15 @@ function gameLoop() {
 
         pipe.x=pipe.x-2;
 
+        if(!pipe.passed && pipe.x+pipeWidth < birdX) {
+            score++;
+            pipe.passed=true;
+        }
+
         if(pipe.x+pipeWidth<0) {
             pipe.x=canvas.width+(pipeCount-1)*pipeSpacing;
             pipe.topHeight=generatePipeHeight();
+            pipe.passed=false;
         }
 
         ctx.fillRect(pipe.x, 0, pipeWidth, pipe.topHeight);
@@ -112,6 +122,11 @@ function gameLoop() {
         ctx.fillText("Game Over", canvas.width / 2, canvas.height / 2);
         return;
     }
+
+    ctx.textAlign="left";
+    ctx.fillStyle="black";
+    ctx.font="24px Arial";
+    ctx.fillText("Score: "+score, 20, 40);
 
     requestAnimationFrame(gameLoop);
 }
