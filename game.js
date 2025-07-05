@@ -68,7 +68,7 @@ document.addEventListener("keydown", (e) => {
     if(e.code === "Space") {
         flap();
     }
-})
+});
 
 document.addEventListener("touchstart", (e) => {
     flap();
