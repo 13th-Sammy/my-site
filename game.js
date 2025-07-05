@@ -31,6 +31,10 @@ birdImg.onload=function() {
     gameLoop();
 }
 
+function flap() {
+    birdVelocity=-8;
+}
+
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -60,12 +64,10 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", (e) => {
     if(e.code === "Space") {
-        birdVelocity=-8;
+        flap();
     }
 })
 
-document.addEventListener("touchstart", function() {
-    birdVelocity=-8;
-})
+document.addEventListener("touchstart", flap);
