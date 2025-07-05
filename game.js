@@ -70,4 +70,6 @@ document.addEventListener("keydown", (e) => {
     }
 })
 
-document.addEventListener("touchstart", flap);
+document.addEventListener("touchstart", (e) => {
+    flap();
+});
