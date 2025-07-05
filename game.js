@@ -3,7 +3,7 @@ const ctx=canvas.getContext("2d");
 
 let gameOver=false;
 
-let pipeGap=120;
+let pipeGap=150;
 const pipeCount=2;
 const pipeSpacing=450;
 const pipeWidth=60;
@@ -25,6 +25,9 @@ for(let i=0; i<pipeCount; i++) {
 
 let birdY=100;
 let birdVelocity=0;
+const birdX=100;
+const birdWidth=40;
+const birdHeight=40;
 const gravity=0.5;
 
 const birdImg=new Image();
@@ -43,10 +46,6 @@ function flap() {
 }
 
 function checkCollision(pipe) {
-    const birdX=100;
-    const birdWidth=40;
-    const birdHeight=40;
-
     const pipeBottomY=pipe.topHeight+pipeGap;
 
     if(birdY < 0 || birdY+birdHeight > canvas.height) {
@@ -73,6 +72,7 @@ function restartGame() {
         });
     }
     gameOver=false;
+    gameLoop();
 }
 
 function gameLoop() {
@@ -81,7 +81,7 @@ function gameLoop() {
     birdVelocity=birdVelocity+gravity;
     birdY=birdY+birdVelocity;
 
-    ctx.drawImage(birdImg, 100, birdY, 40, 40);
+    ctx.drawImage(birdImg, birdX, birdY, birdWidth, birdHeight);
 
     ctx.fillStyle="green";
 
