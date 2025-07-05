@@ -65,3 +65,7 @@ document.addEventListener("keydown", function(e) {
         birdVelocity=-8;
     }
 })
+
+document.addEventListener("touchstart", function() {
+    birdVelocity=-8;
+})
