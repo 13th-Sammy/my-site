@@ -23,5 +23,7 @@ hr {
 }
 
 canvas {
+    display:block;
     background:skyblue;
+    margin:40px auto;
 }
