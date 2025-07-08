@@ -124,7 +124,7 @@ function gameLoop() {
     }
 
     ctx.textAlign="left";
-    ctx.fillStyle="black";
+    ctx.fillStyle="white";
     ctx.font="24px Arial";
     ctx.fillText("Score: "+score, 20, 40);
 
